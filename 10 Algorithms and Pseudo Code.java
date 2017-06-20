@@ -65,7 +65,7 @@
 			y = x - y = 4
 			x = x - y = 17
 
-4. Method to get a random number between a lower and upper limit number, randome number should be type float between 0 and 100
+4. Method to get a random number between a lower and upper limit number, random number should be type float between 0 and 100
 	Algorithm
 
 			Step 1: This should accept two values of type int, lower and upper
@@ -100,14 +100,34 @@
 				
 			
 
-5. Sort a list of numbers from ascending and descending order
+5. Sort a list of numbers, {2,1,3,8,9,6,5,4,0}
 	Algorithm
 
-			Step 1:
-
+			Step 1: Get an array of unsorted numbers
+			Step 2: Create a int variable to hold the minIndex to swap the array values with
+			Step 3: Create a for loop tha iterates the length of array minus one
+			Step 4: Inside the for loop assign minIndex equal to i
+			Step 5: Create another for loop inside that will go the full length of the array
+			Step 6: This will find the minimum index, by comparing each value to the minIndex value 
+			Step 7: Then swap indexes if the minIndex value is greater than the current array index value
+			Step 8: Outside the inner for loop, swap the minIndex value with current i index value
+			Step 9: Print the sorted array
 
 	Pseudo-Code
- 
+ 			
+ 			int[] arr = {2,1,3,8,9,6,5,4,0}
+ 			int minIndex
+
+ 			for int i = 1; i is less than length of array minus i; i++
+ 				for int j = i + 1; j is less than length of array; j++
+ 					if(arr[minIndex] < arr[j])
+ 						minIndex = j
+
+ 				int temp = arr[minIndex]
+ 				arr[minIndex] = arr[i]
+ 				arr[i] = temp
+
+ 			print sorted array using for loop
 
 6. Split a string at a whitespace "Hello my name is Johnny".
 	Algorithm
