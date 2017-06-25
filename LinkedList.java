@@ -1,7 +1,5 @@
-import java.lang.Iterable;
-import java.util.Iterator;
 
-public class LinkedList<T> implements Iterable<T>{
+public class LinkedList<T>{
 
 	private Node<T> head, tail;
 	private int size;
@@ -50,36 +48,6 @@ public class LinkedList<T> implements Iterable<T>{
 	        this.next = next;
 	    }
 
-	}
-
-	@Override
-	public Iterator<T> iterator() {
-		return new LinkedListIterator();
-	}
-	
-	private class LinkedListIterator implements Iterator<T> {
-
-		private Node<T> current = head;
-		
-		public T next() {
-			
-			T item = current.data;
-			current = current.next;
-			return item;
-		}
-		
-		@Override
-		public boolean hasNext() {
-			return current != null;
-		}
-	}
-	
-	@Override 
-	public String toString() {
-		StringBuilder s = new StringBuilder();
-	    for (T item : this)
-	    	s.append(item + " ");
-	    return s.toString();
 	}
 	
 	
