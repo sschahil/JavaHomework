@@ -11,29 +11,40 @@ public class LinkedList<T>{
 
 	public void print(){
 		Node<T> current = head;
+		
 		while(current.next != null){
 			System.out.print(current.data + " -> ");
 			current = current.next;
 		}
 		System.out.println(current.data);
+		
+		System.out.println("The size of the list is " + size);
 	}
 
     public void add(T d){
     	Node<T> end = new Node<T>(d);
     	Node<T> current = head;
 
+    	if(current.data == null) {
+    		current.data = end.data;
+    		size++;
+    		return;
+    	}
+    	
     	while(current.next != null){
     		current = current.next;
     	}
     	current.next = end;
     	size++;
-        System.out.println(d + " appended to tail!");
     }
     
     public void addFront(T d) {
-    	add(d, 1);
+    	Node<T> front = new Node<T>(d);
+    	Node<T> current = head;
     	
-    	System.out.println(d + " added to the front!");
+    	front.next = current;
+    	head = front;
+    	size++;
     }
 
     public void add(T d,int index){
@@ -56,19 +67,16 @@ public class LinkedList<T>{
     		end.next = current.next;
     		current.next = end;
     		size++;
-    		System.out.println("Success! " + d + " added at index " + index);
     	}
     }
-    
-    
     
     public int getSize() {
     	return size;
     }
     
-    public void setSize(int size) {
+    public void setSize(int size, T d) {
     	for(int i = 0; i < size; i++) {
-    		add(null);
+    		add(d);
     	}
     }
     
@@ -78,20 +86,22 @@ public class LinkedList<T>{
     	LinkedList<String> strList = new LinkedList<String>();
     	LinkedList<Integer> emptyList = new LinkedList<Integer>();
     	
-    	emptyList.setSize(5);
+    	emptyList.setSize(5, 0);
     	emptyList.print();
     	System.out.println();
     	
     	strList.add("Here's");
     	strList.add("Johnny2");
-    	strList.add("Johnny1", 2);
-    	strList.addFront("Here's 1");
+    	strList.add("Johnny1", 1);
+    	strList.addFront("Here's1");
+    	strList.add("The Shinning", 1);
     	strList.print();
     	
     	System.out.println();
     	list.add(1);
     	list.add(4);
     	list.add(5590);
+    	list.addFront(52);
     	list.print();
     }
 }   
