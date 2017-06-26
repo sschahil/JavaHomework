@@ -29,6 +29,12 @@ public class LinkedList<T>{
     	size++;
         System.out.println(d + " appended to tail!");
     }
+    
+    public void addFront(T d) {
+    	add(d, 1);
+    	
+    	System.out.println(d + " added to the front!");
+    }
 
     public void add(T d,int index){
     	Node<T> end = new Node<T>(d);
@@ -54,6 +60,8 @@ public class LinkedList<T>{
     	}
     }
     
+    
+    
     public int getSize() {
     	return size;
     }
@@ -77,6 +85,7 @@ public class LinkedList<T>{
     	strList.add("Here's");
     	strList.add("Johnny2");
     	strList.add("Johnny1", 2);
+    	strList.addFront("Here's 1");
     	strList.print();
     	
     	System.out.println();
