@@ -80,6 +80,7 @@ public class LinkedList<T>{
     	}
     	
     	current.next = null;
+    	size--;
     }
     
     public void removeStart() {
@@ -87,6 +88,29 @@ public class LinkedList<T>{
     	
     	head = current.next;
     	current.next = null;
+    	size--;
+    }
+    
+    public void remove(int index) {
+    	Node<T> current = head;
+    	int i = 0;
+    	
+    	if(index == 0) {
+    		head = current.next;
+        	current.next = null;
+        	size--;
+        	return;
+    	}
+    	while(i < index - 1 ) {
+    		current = current.next;
+    		i++;
+    	}
+    	
+    	Node<T> del = current;
+    	current = current.next;
+    	del.next = current.next;
+    	current.next = null;
+    	size--;
     }
     
     public int getSize() {
@@ -115,7 +139,7 @@ public class LinkedList<T>{
     	strList.removeEnd();
     	strList.addFront("Here's1");
     	strList.add("The Shinning", 1);
-    	strList.removeStart();
+    	strList.remove(2);
     	strList.print();
     	
     	System.out.println();
@@ -124,6 +148,7 @@ public class LinkedList<T>{
     	list.add(5590);
     	list.addFront(52);
     	list.removeStart();
+    	list.remove(2);
     	list.print();
     }
 }   
