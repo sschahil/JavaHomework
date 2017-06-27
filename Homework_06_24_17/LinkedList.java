@@ -42,6 +42,12 @@ public class LinkedList<T>{
     	Node<T> front = new Node<T>(d);
     	Node<T> current = head;
     	
+    	if(current.data == null) {
+    		current.data = front.data;
+    		size++;
+    		return;
+    	}
+    	
     	front.next = current;
     	head = front;
     	size++;
@@ -117,21 +123,10 @@ public class LinkedList<T>{
     	return size;
     }
     
-    public void setSize(int size, T d) {
-    	for(int i = 0; i < size; i++) {
-    		add(d);
-    	}
-    }
-    
     public static void main(String[] args) {
     	
     	LinkedList<Integer> list = new LinkedList<Integer>();
     	LinkedList<String> strList = new LinkedList<String>();
-    	LinkedList<Integer> emptyList = new LinkedList<Integer>();
-    	
-    	emptyList.setSize(5, 0);
-    	emptyList.print();
-    	System.out.println();
     	
     	strList.add("Here's");
     	strList.add("Johnny2");
