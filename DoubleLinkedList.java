@@ -50,12 +50,26 @@ public class DoubleLinkedList<T> {
 		
 		while(current.next != null) {
 			current = current.next;
-			
 		}
 		
 		current.next = input;
 		input.previous = current;
+		size++;
+	}
+	
+	public void addFront(T v) {
+		DoubleNode<T> input = new DoubleNode<T>(v);
+		DoubleNode<T> current = head;
 		
+		if(current.value == null) {
+			current.value = input.value;
+			size++;
+			return;
+		}
+		
+		input.next = current;
+		current.previous = input;
+		head = input;
 		size++;
 	}
 	
@@ -67,6 +81,8 @@ public class DoubleLinkedList<T> {
 		list.addEnd(10);
 		list.addEnd(68);
 		list.addEnd(6);
+		list.addFront(159);
+		list.addFront(0);
 		list.printQueue();
 		System.out.println();
 		list.printStack();
