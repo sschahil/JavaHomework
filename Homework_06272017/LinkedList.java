@@ -2,12 +2,15 @@ import java.util.Scanner;
 
 public class LinkedList{
 
+	//class variables
 	private Node head;
 
+	//LinkedList constructor 
 	public LinkedList(){
 		head = new Node(null);
 	}// end of constructor 
-
+	
+	//prints the current list
 	public void print(){
 		Node current = head;
 		
@@ -18,7 +21,18 @@ public class LinkedList{
 		System.out.println(current.value);
 	}// end of print method
 	
-	//Sets the size of the current list 
+	//prints the current list, passing the value of a node
+	private void print(Node head){
+		Node current = head;
+		
+		while(current.next != null){
+			System.out.print(current.value + " -> ");
+			current = current.next;
+		}
+		System.out.println(current.value);
+	}// end of print method
+	
+	//sets the size of the current list 
 	private int setSize(int size) {
 		Node current = head;
 		
@@ -34,6 +48,7 @@ public class LinkedList{
 		return size;
 	}//end of set size
 	
+	//gets the size of the current list
 	public int getSize() {
 		int size = 0;
 		size = setSize(size);
@@ -41,7 +56,7 @@ public class LinkedList{
 		return size;
 	}//end of getSize
 	
-	//start of add method
+	//adds a node to the list
 	public void add(String v, int index) {
 		Node newNode = new Node( v);
 		Node current = head;
@@ -84,10 +99,11 @@ public class LinkedList{
 		}//end of switch statement
 	}// end of add method
 	
+	//removes any given node
 	public void remove(int index) {
 		Node current = head;
 		
-		if(index < 0 || index > getSize()) {
+		if(index < 1 || index > getSize()) {
 			System.out.println("Error: Out of Bounds");
 		}//end of if statement for out of bounds test
 		if(current.value == null) {
@@ -97,7 +113,7 @@ public class LinkedList{
 		
 		//start of switch statement
 		switch(index) {
-		case 0:
+		case 1:
 			if(current.next == null) {
 				current.value = null;
 			}
@@ -126,26 +142,94 @@ public class LinkedList{
 		}//end of switch statement
 	}//end of remove method
 	
-	public void removeDuplicates() {
+	//changes the value of the given index
+	public void editNode(String value, int index) {
+		Node current = head;
 		
+		if(head.value == null) {
+			System.out.println("Error: No Value to Edit");
+			return;
+		}
+		if(index < 0 || index > getSize()) {
+			System.out.println("Error: Out of Bounds");
+			return;
+		}
+		
+		switch(index) {
+		case 0:
+			current.value = value;
+			return;
+		default:
+			if(index == getSize()) {
+				while(current.next != null) {
+					current = current.next;
+				}
+				current.value = value;
+				return;
+			}
+			int jump = 0;
+			while(jump < index - 1) {
+				current = current.next;
+				jump++;
+			}
+			current.value = value;
+			return;
+		}//end of switch
+	}//end of method editNode
+
+	//remove duplicate values in the list
+	public void removeDuplicates() {
+		Node current = head; 
+		Node temp = null;
+		
+		while(current != null && current.next != null) {
+			temp = current;
+			while(temp.next != null) {
+				if(current.value == temp.next.value) {
+					temp.next = temp.next.next;
+				}
+				else {
+					temp = temp.next;
+				}
+			}//end of inside while loop
+			current = current.next;
+		}//end of outside while loop
 	}//end of removeDuplicate method
 	
+	//splits the list at the given index
 	public void splitList(int index) {
+		Node current = head;
+		Node head1 = new Node(null);
+		int jump = 1;
 		
+		while(jump < index - 1) {
+			current = current.next;
+			jump++;
+		}
+		
+		head1 = current.next;
+		current.next = null;
+		
+		System.out.println("The new LinkedList:");
+		print(head);
+		System.out.println("\nThe split LinkedList: ");
+		print(head1);
 	}//end of Split List
 	
+	//deletes the list
 	public void destroy() {
 		head.value = null;
 		head.next = null;
 	}// end of destroy method
 	
+	//creates a menu for a user interface
 	public void menu() {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		int choose = 0, index;
 		String value;
 		
-		while(choose != 6) {
+		while(choose != 9) {
 			//Displays Menu
 			System.out.println("-----------------------------");
 			System.out.println("Welcome to Create LinkedList");
@@ -153,10 +237,13 @@ public class LinkedList{
 			System.out.println("Pick one of the following options:");
 			System.out.println("1. Initialize the List");
 			System.out.println("2. Add to the List");
-			System.out.println("3. Remove from the List");
-			System.out.println("4. Delete the List");
-			System.out.println("5. Print the List");
-			System.out.println("6. Quit");
+			System.out.println("3. Edit a element in the List");
+			System.out.println("4. Split the List");
+			System.out.println("5. Remove from the List");
+			System.out.println("6. Remove all duplicates in the List");
+			System.out.println("7. Delete the List");
+			System.out.println("8. Print the List");
+			System.out.println("9. Quit");
 			choose = input.nextInt();
 			input.nextLine();
 			switch(choose) {
@@ -175,13 +262,29 @@ public class LinkedList{
 				add(value, index);
 				break;
 			case 3:
+				System.out.println("Enter value that will change the node:");
+				value = input.nextLine();
+				System.out.println("Enter the index of the node you want to be changed:");
+				index = input.nextInt();
+				input.nextLine();
+				editNode(value, index);
+				break;
+			case 4:
+				System.out.println("Enter index at which to split the list:");
+				index = input.nextInt();
+				splitList(index);
+				break;
+			case 5:
 				System.out.println("Enter an index to remove a node from the list:");
 				index = input.nextInt();
 				input.nextLine();
 				remove(index);
 				break;
-			case 4:
-				String str;
+			case 6:
+				removeDuplicates();
+				break;
+			case 7:
+				String str = "";
 				System.out.println("Are you sure you want to destroy(delete) the list!");
 				System.out.println("Enter Yes or No)");
 				str = input.nextLine();
@@ -189,11 +292,11 @@ public class LinkedList{
 					destroy();
 				}
 				break;
-			case 5:
+			case 8:
 				System.out.println("The LinkedList you have created:");
-				print();
+				print(head);
 				break;
-			case 6:
+			case 9:
 				str = "";
 				System.out.println("Are you sure you want to quit?(Yes or No)");
 				str = input.nextLine();
@@ -211,10 +314,12 @@ public class LinkedList{
 	
 }// end of class DoubleLinkedList   
 
+//start of node class
 class Node {
 	Node next = null;
    	String value;
-
+   	
+   	//Node constructor
    	public Node(String v){
 	   	value = v;
     }// end of Node constructor
