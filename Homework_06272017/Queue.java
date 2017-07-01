@@ -29,8 +29,8 @@ public class Queue {
 		}
 		
 		System.out.print(current.value);
-		while(current.next != null) {
-			current = current.next;
+		while(current.previous != null) {
+			current = current.previous;
 			System.out.print(" <- " + current.value);
 		}
 		System.out.println();
@@ -117,7 +117,45 @@ public class Queue {
 	
 	//deletes a node in the list given the position beginning is 1 and end value is the size of the list
 	public void pop(int index) {
+		QueueNode current = head;
+		QueueNode temp;
 		
+		if(current.value == null) {
+			System.out.println("Error: Queue is empty");
+		}
+		if(index < 1 || index > getSize()) {
+			System.out.println("Error: Out of Bounds");
+		}
+		
+		switch(index) {
+		case 1:
+			temp = current.next;
+			temp.previous = null;
+			current.next = null;
+			head = temp;
+			return;
+		default:
+			if(index == getSize()) {
+				while(current.next != null) {
+					current = current.next;
+				}
+				temp = current.previous;
+				temp.next = null;
+				current.previous = null;
+				return;
+			}//removes the last node in the list
+			int jump = 1;
+			while(jump < index) {
+				current = current.next;
+				jump++;
+			}
+			temp = current.previous;
+			temp.next = current.next;
+			current.next.previous = temp;
+			current.next = null;
+			current.previous = null;
+			return;
+		}//end of switch statement
 	}//end of method pop
 	
 	//deletes the entire list
