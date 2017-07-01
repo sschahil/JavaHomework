@@ -8,29 +8,43 @@ public class DoubleLinkedListTest {
 	
 	@Test
 	public void test() {
-		int size = 0;
+		//testing menu
+		list.menu();
 		
-		list.add("Hi", 0);
-		size++;
-		list.add("Bill", 1);
-		size++;
-		list.add("Nye", 2);
-		size++;
-		list.add("The Science Guy", 2);
-		size++;
-		list.add("guy", 1);
-		size++;
-		list.add("LMAO", list.getSize());
-		size++;
-		list.print();
-		list.remove(3);
-		size--;
-		list.print();
-		System.out.println();
-		list.destroy();
-		size = 0;
-		list.print();
-		assertEquals(size, list.getSize());
+		//Adding and Removing methods
+//		list.add("Hi", 0);
+//		list.add("Bill", 1);
+//		list.add("Nye", 2);
+//		list.add("The Science Guy", 2);
+//		list.add("guy", 1);
+//		list.add("Hi", list.getSize());
+//		list.print();
+//		list.remove(3);
+//		list.print();
+//		list.add("Hello", 1);
+//		list.print();
+//		list.remove(1);
+//		list.print();
+		
+		//EditNode method
+//		list.editNode("Bill", 3);
+//		list.print();
+//		System.out.println();
+		
+		//Split method
+//		list.split(3);
+//		list.print();
+//		System.out.println();
+		
+		//Destroy method
+//		list.destroy();
+//		list.print();
+		//Remove Duplicate methods
+		
+//		list.removeDuplicates();
+//		list.print();
+//		list.printPrevious();
+		assertEquals(5, list.getSize());
 	}
 
 }
