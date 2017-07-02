@@ -24,8 +24,15 @@ public class QueueTest {
 		queue.printForward();
 		queue.printBackward();
 		System.out.println();
+		//editing a node
+		queue.editNode("zuzuz6", 6);
+		queue.printForward();
+		queue.printBackward();
+		System.out.println();
 		//making sure the size of the list is right
 		assertEquals(6, queue.getSize());
+		//menu
+//		queue.menu();
 	}
 
 }
