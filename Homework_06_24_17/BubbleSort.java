@@ -42,12 +42,5 @@ public class BubbleSort {
 		}
 		System.out.println();
 	}
-	
-	public static void main(String[] args) {
-		BubbleSort bubble = new BubbleSort();
-		int[] array = {15,65165,512,-54,654,0,6,6,8136,85,20};
-		
-		bubble.sort(array);
-		bubble.displaySort(array);
-	}
+
 }
