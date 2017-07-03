@@ -38,12 +38,4 @@ public class InsertionSort {
 			System.out.print(c + " ");
 		}
 	}
-	
-	public static void main(String[] args) {
-		InsertionSort insert = new InsertionSort();
-		int[] array = {6,65,31,86,3,-5,89,-65,0,65,9,9,3,5,88,-533,56,4};
-		
-		insert.sort(array);
-		insert.display(array);
-	}
 }
