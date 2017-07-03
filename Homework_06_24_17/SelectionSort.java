@@ -39,12 +39,9 @@ public class SelectionSort {
 		
 		while(index < arr.length - 1) {
 			setMinIndex(arr);
-			
 			swap(arr, index);
-			
 			index++;
 		}
-		
 		return arr;
 	}
 	
@@ -53,13 +50,5 @@ public class SelectionSort {
 		for(int c : arr) {
 			System.out.print(c + " ");
 		}
-	}
-	
-	public static void main(String[] args) {
-		SelectionSort selection = new SelectionSort();
-		int[] array = {2,3,6,9,5,3,65,28,5,-65,-6,0,659};
-		
-		selection.sort(array);
-		selection.display(array);
 	}
 }
