@@ -65,10 +65,22 @@ public class MergeSort {
 	private void sortTemp(int[] arr) {
 		fillTemp1(arr);
 		fillTemp2(arr);
-		SelectionSort selection = new SelectionSort();
 		
-		selection.sort(temp1);
-		selection.sort(temp2);
+		InsertionSort insert = new InsertionSort();
+		InsertionSort insert2 = new InsertionSort();
+		
+		insert.sort(temp1);
+		insert2.sort(temp2);
+		
+		for(int c : temp1) {
+			System.out.print(c + " ");
+		}
+		System.out.println();
+		for(int c : temp2) {
+			System.out.print(c + " ");
+		}
+		System.out.println();
+		
 	}
 	
 	public void sort(int[] arr) {
@@ -87,13 +99,11 @@ public class MergeSort {
 	        }
 			k++;
 	    }
-		
 		while(i < size1) {
 			arr[k] = temp1[i];
 			i++;
 			k++;
 		}
-		
 		while(j < size2) {
 			arr[k] = temp2[j];
 			j++;
@@ -106,13 +116,5 @@ public class MergeSort {
 		for(int c : arr) {
 			System.out.print(c + " ");
 		}
-	}
-	
-	public static void main(String[] args) {
-		MergeSort merge = new MergeSort();
-		int[] array = {65,6,6,9,-2,665,65,-6,-15,0,6};
-		
-		merge.sort(array);
-		merge.display(array);
 	}
 }
