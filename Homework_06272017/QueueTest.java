@@ -10,24 +10,21 @@ public class QueueTest {
 	public void test() {
 		//adding to the list
 		queue.initialize("hey6");
-		queue.initialize("hi5");
-		queue.initialize("hey4");
-		queue.initialize("hi3");
-		queue.initialize("hey2");
-		queue.initialize("hi1");
-		queue.push("zuzu", 6);
-		queue.printForward();
-		queue.printBackward();
+		queue.push("hi5");
+		queue.push("hey4");
+		queue.push("hi3");
+		queue.push("hey2");
+		queue.push("hi1");
+		queue.push("zuzu");
+		queue.print();
 		System.out.println();
 		//removing from the list
-		queue.pop(4);
-		queue.printForward();
-		queue.printBackward();
+		queue.pop();
+		queue.print();
 		System.out.println();
 		//editing a node
 		queue.editNode("zuzuz6", 6);
-		queue.printForward();
-		queue.printBackward();
+		queue.print();
 		System.out.println();
 		//making sure the size of the list is right
 		assertEquals(6, queue.getSize());
