@@ -57,7 +57,7 @@ public class Stack {
 	}//end of method initialize
 	
 	//pushes in a new node into the stack
-	public void push(String value, int index) {
+	public void push(String value) {
 		StackNode newNode = new StackNode(value);
 		StackNode current = head;
 		
@@ -65,73 +65,26 @@ public class Stack {
 			System.out.println("Error: Stack hasn't been initialized yet");
 			return;
 		}
-		if(index < 0 || index > getSize()) {
-			System.out.println("Error: Out of Bounds");
-			return;
-		}
 		
-		switch(index) {
-		case 0:
-			newNode.previous = current;
-			head = newNode;
-			return;
-		default:
-			if(index == getSize()) {
-				while(current.previous != null) {
-					current = current.previous;
-				}
-				current.previous = newNode;
-				return;
-			}//adds a node to the end of the Stack
-			int jump = 0;
-			while(jump < index - 1) {
-				current = current.previous;
-				jump++;
-			}
-			StackNode temp = current.previous;
-			current.previous = newNode;
-			newNode.previous = temp;
-			return;
-		}//end of switch statement
+		newNode.previous = current;
+		head = newNode;
 	}//end of method push
 	
 	//remove the node at the given position
-	public void pop(int index) {
+	public void pop() {
 		StackNode current = head;
 		
 		if(head.value == null) {
 			System.out.println("Error: No values in the Stack");
 		}
-		if(index < 1 || index > getSize()) {
-			System.out.println("Error: Out of Bounds");
+		
+		if(current.previous == null) {
+			current.value = null;
 		}
 		
-		switch(index) {
-		case 1:
-			StackNode temp = current.previous;
-			current.previous = null;
-			head = temp;
-			return;
-		default:
-			if(index == getSize()) {
-				int jump = 1;
-				while(jump < index - 1) {
-					current = current.previous;
-					jump++;
-				}
-				current.previous = null;
-				return;
-			}//pops the last node out of Stack
-			int jump = 1;
-			while(jump < index -1) {
-				current = current.previous;
-				jump++;
-			}
-			temp = current.previous;
-			current.previous = temp.previous;
-			temp.previous = null;
-			return;
-		}//end of switch statement
+		StackNode temp = current.previous;
+		current.previous = null;
+		head = temp;
 	}// end of method pop
 	
 	//destroys the stack
@@ -175,7 +128,7 @@ public class Stack {
 	
 	//creates menu
 	public void menu() {
-		int choose = 0, index;
+		int choose = 0;
 		String value;
 		
 		while(choose != 6) {
@@ -196,42 +149,36 @@ public class Stack {
 			switch(choose) {
 			case 1:
 				if(head.value == null) {
-					System.out.println("Initialzing the Queue");
+					System.out.println("Initialzing the Stack...");
 				}
 				else {
-					System.out.println("Adding node to the front");
+					System.out.println("Adding node to the Stack...");
 				}
-				System.out.println("Enter a value to the Queue");
+				System.out.println("Enter a value to the Stack");
 				value = input.nextLine();
 				initialize(value);
 				break;
 			case 2:
-				System.out.println("Adding node to queue");
+				System.out.println("Adding node to Stack...");
 				System.out.println("Enter the value to be added to the list:");
 				value = input.nextLine();
-				System.out.println("Enter the index at which to add this node.");
-				index = input.nextInt();
-				input.nextLine();
-				push(value, index);
+				push(value);
 				break;
 			case 3: 
-				System.out.println("Removing node to queue");
-				System.out.println("Enter the position of node that is to be removed:");
-				index = input.nextInt();
-				input.nextLine();
-				pop(index);
+				System.out.println("Popping node from Stack...");
+				pop();
 				break;
 			case 4:
 				String str;
 				System.out.println("Are you sure you want to delete the list?(Yes or No)");
 				str = input.nextLine();
 				if(str.equalsIgnoreCase("yes")) {
-					System.out.println("Destroying the list.");
+					System.out.println("Destroying the list...");
 					destroy();
 					break;
 				}
 				else {
-					System.out.println("Returning back to Menu.");
+					System.out.println("Returning back to Menu...");
 					break;
 				}
 			case 5:
@@ -246,7 +193,7 @@ public class Stack {
 				}
 				else {
 					choose = 0;
-					System.out.println("Returning back to Menu");
+					System.out.println("Returning back to Menu...");
 					break;
 				}
 			}//end of switch statement
